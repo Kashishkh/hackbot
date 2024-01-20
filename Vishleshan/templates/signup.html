@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up form</title>
+    <!-- css connection -->
+    <link rel="stylesheet" href="../static/signup.css">
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="container forms">
+        <div class="form-login">
+            <div class="form-content">
+                <header>Login</header>
+
+                <form action="#">
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" class="input">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="Password" class="password">
+                    </div>
+
+                    <div class="form-link">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+
+                    <div class="field button-field">
+                        <button>Login</button>
+                    </div>
+
+                    <div class="form-link">
+                        <span>Don't have an account?</span> <a href="#" class="link signup-link">Sign-up</a>
+                    </div>
+                </form>
+            </div>
+            <div class="line">
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="./google.png" alt="G" class="google-img">
+                        <span>Login with Google</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SignUp form -->
+
+        <div class="form signup">
+            <div class="form-content">
+                <header>Signup</header>
+
+                <form action="#">
+                    
+                    <div class="field input-field">
+                        <input type="fullname" placeholder="Fullname" class="input">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="user" placeholder="Username" class="input">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="email" placeholder="Email" class="input">
+                    </div>
+
+                    <div class="field input-field">
+                        <input type="password" placeholder="Create Password" class="password">
+                    </div>
+
+                    <div class="form-link">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+
+                    <div class="field button-field">
+                        <button>Signup</button>
+                    </div>
+
+                    <div class="form-link">
+                        <span>Already have an account?</span> <a href="#" class="link login-link">Login</a>
+                    </div>
+                </form>
+            </div>
+            <div class="line">
+                <div class="media-options">
+                    <a href="#" class="field google">
+                        <img src="./google.png" alt="G" class="google-img">
+                        <span style="margin-top: 100px;">Login with Google</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAvascript -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const forms = document.querySelector(".forms"),
+            links = document.querySelectorAll(".link");
+
+        links.forEach(link => {
+            link.addEventListener("click", function (e) {
+                e.preventDefault();
+                console.log("Signup link clicked!");
+                forms.classList.toggle("show-signup");
+            });
+        });
+    });
+</script>
+</body>
+</html>

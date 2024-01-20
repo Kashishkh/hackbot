@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_visual.css') }}">
+    <title>Result</title>
+</head>
+<body>
+    <div class="header_container">
+        <div class="buttons">
+            <div class="login_button" style="margin-top: -20px;">
+                <a href="{{url_for('login')}}"><button>Login</button></a>
+            </div>
+            <div class="signup_button" style="margin-top: -20px;">
+                <a href="{{url_for('signup')}}"><button>Signup</button></a>
+            </div>
+            <div class="about_button" style="margin-top: -20px;">
+                <a href="{{url_for('about')}}"><button>About</button></a>
+            </div>
+            <div class="contact_button" style="margin-top: -20px;">
+                <a href="{{url_for('contact')}}"><button>Contact</button></a>
+            </div>
+    
+            <div class="faq_button">
+                <div class="dropdown">
+                    <button class="dropbtn">FAQ</button>
+                    <div class="dropdown-content">
+                        <div class="question-dropdown">
+                            <button class="dropbtn">What is Project Vishleshan?</button>
+                            <div class="dropdown-content">
+                                <p>Project Vishleshan is a cutting-edge initiative aimed at providing local shopkeepers with a powerful sales analysis and visualization platform.
+                                    It leverages advanced data analytics and visualization techniques to offer actionable insights, 
+                                    enabling businesses to make informed decisions, optimize inventory management, and enhance overall efficiency. 
+                                    Whether you're a small boutique or a neighborhood grocery store, 
+                                    Vishleshan is designed to elevate your business through the lens of data.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="question-dropdown">
+                            <button class="dropbtn">How data science is used in Vishleshan?</button>
+                            <div class="dropdown-content">
+                                <p>Vishleshan employs cutting-edge data science methodologies to meticulously analyze sales data for local shopkeepers. 
+                                    Through advanced algorithms, the platform identifies patterns, forecasts future sales, and generates insightful visualizations. 
+                                    This data-driven approach empowers shopkeepers with strategic insights, 
+                                    facilitating informed decisions on inventory management, pricing strategies, and targeted marketing efforts.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="question-dropdown">
+                            <button class="dropbtn">Who built Vishleshan?</button>
+                            <div class="dropdown-content">
+                                <p>Vishleshan was collaboratively built by a team of four developers: Devesh Attri,Shivang Srivastava,Priyanshu Pathak, and Yash. 
+                                    Each member brought their unique skills and expertise to create a comprehensive solution for empowering local retailers through advanced sales analysis and visualization tools. 
+                                    The diverse strengths of the team contributed to the successful development of Vishleshan, ensuring it meets the needs of businesses in the retail industry.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="logo">
+            <img src="../static/Vishleshan Logo.png" alt="logo image">
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="{{ url_for('home') }}">Back to Home</a>
+        <h2>Result</h2>
+        {% if plot_data %}
+            {% if chart_type == 'bar' %}
+                <h3>Bar Chart - Sales for {{ item }} in {{ category }} - {{ month }}</h3>
+            {% elif chart_type == 'pie' %}
+                <h3>Pie Chart - Share of Sales for {{ item }} in {{ category }} - {{ month }}</h3>
+            {% elif chart_type == 'line' %}
+                <h3>Line Chart - Monthly Sales Trend for {{ item }} in {{ category }}</h3>
+            {% elif chart_type == 'stacked_bar' %}
+                <h3>Stacked Bar Chart - Monthly Sales Breakdown for {{ item }} in {{ category }}</h3>
+            {% endif %}
+            <img src="data:image/png;base64,{{ plot_data }}" alt="Sales Visualization">
+            
+            {% if insights %}
+                <h4>Insights:</h4>
+                <ul>
+                    {% for insight in insights %}
+                        <li>{{ insight }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+        {% else %}
+            <p>No data available for the selected parameters.</p>
+        {% endif %}
+
+        <div class="additional-insights">
+            <h4>Additional Insights:</h4>
+            <p>{{item_status_insight}}</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="social-media">
+            <a href="https://www.facebook.com/" target="_blank">
+                <img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook">
+            </a>
+            <a href="https://twitter.com/" target="_blank">
+                <img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="{{ url_for('static', filename='instagram-icon.png') }}" alt="Instagram">
+            </a>
+        </div>
+        <p>&copy; 2023 Vishleshan. All rights reserved.</p>
+    </footer>
+</body>
+</html>
